@@ -1,0 +1,38 @@
+{% extends 'layout.html' %}
+
+{% block title %}Homepage{% endblock %}
+
+{% block body %}
+{% if get_flashed_messages() %}
+{% for message in get_flashed_messages() %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">Hello, {{ user }} {{ message }}</div>
+{% endfor %}
+{% endif %}
+
+
+<div class="container text-muted">
+    {% if products %}
+    {% for product in products %}
+    <div class="row">
+        <div class="col-md-6 col-lg-3">
+            <div class="card">
+                <img src="{{ product['url'] }}" class="card-img-top img-fluid" />
+                <div class="card-block">
+                    <h3 class="card-title">{{ product['name'] }}</h3>
+                    <p>
+                        just buy from R and I
+                    </p>
+                    <p>
+                        ${{ product['price'] }}
+                    </p>
+                    <p>
+                        {{ product['id'] }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+    {% endif %}
+</div>
+{% endblock %}
